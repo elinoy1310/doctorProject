@@ -16,8 +16,8 @@ const produceMessage=require('../producer.js')
 exports.getSendMessagesPage = async (req, res) => {
     try {
         // שליפת כל המשתמשים שבהם isRegistered הוא true
-        const users = await userModel.getAllUsers();
-
+        
+        const users=await userModel.getAllUsers();
         // שליחה של המידע לתבנית sendMessages.ejs
         res.render('sendMessages', { users });
     } catch (error) {
@@ -38,8 +38,10 @@ exports.sendMessage = async (req, res) => {
             doctorName: doctorName,
             message:message
         })
+        const users=await userModel.getAllUsers();
 
-        res.send('Message sent successfully!');
+        res.render('sendMessages', { successMessage: 'Message sent successfully!',users });
+
     } catch (error) {
         res.status(500).send('Error sending message');
     }

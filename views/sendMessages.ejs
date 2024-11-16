@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send Messages</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // הסתרת ההודעה לאחר 5 שניות
+        function hideMessage() {
+            const messageElement = document.getElementById('successMessage');
+            if (messageElement) {
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                }, 5000);
+            }
+        }
+        window.onload = hideMessage;
+    </script>
 </head>
 <body>
     <h1>Welcome, Doctor!</h1>
+
+    <!-- הודעת הצלחה -->
+    <% if (typeof successMessage !== 'undefined' && successMessage) { %>
+        <div id="successMessage" style="color: green; margin-bottom: 20px;">
+            <%= successMessage %>
+        </div>
+    <% } %>
 
     <form action="/send-message" method="POST">
         <!-- Doctor's Name -->
