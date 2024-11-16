@@ -1,4 +1,5 @@
 const userModel = require('../models/userModel');
+const produceMessage=require('../producer.js')
 
 // // Render the sendMessages.ejs page
 // exports.getSendMessagesPage = async (req, res) => {
@@ -16,8 +17,6 @@ exports.getSendMessagesPage = async (req, res) => {
     try {
         // שליפת כל המשתמשים שבהם isRegistered הוא true
         const users = await userModel.getAllUsers();
-        console.log(1)
-        console.log(users)
 
         // שליחה של המידע לתבנית sendMessages.ejs
         res.render('sendMessages', { users });
@@ -32,9 +31,13 @@ exports.getSendMessagesPage = async (req, res) => {
 exports.sendMessage = async (req, res) => {
     try {
         const { doctorName, userId, message } = req.body;
-
-        // Logic to send message (replace with real implementation)
         console.log(`Message sent by Dr. ${doctorName} to user ${userId}: ${message}`);
+
+        produceMessage.runProducer(userId,{
+            date: new Date().toISOString(),
+            doctorName: doctorName,
+            message:message
+        })
 
         res.send('Message sent successfully!');
     } catch (error) {
