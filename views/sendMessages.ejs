@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Messages</title>
+</head>
+<body>
+    <h1>Welcome, Doctor!</h1>
+
+    <form action="/send-message" method="POST">
+        <!-- Doctor's Name -->
+        <label for="doctorName">Doctor's Name:</label>
+        <input type="text" id="doctorName" name="doctorName" required>
+
+        <!-- Select User -->
+        <label for="userId">Select a User:</label>
+        <select id="userId" name="userId" required onchange="fetchAverageSugarLevel(this.value)">
+            <option value="" disabled selected>Select a user</option>
+            <% users.forEach(user => { %>
+                <option value="<%= user.id %>"><%= user.name %></option>
+            <% }) %>
+        </select>
+
+        <!-- Display Average Sugar Level -->
+        <p id="averageSugarLevel"></p>
+
+        <!-- Message to User -->
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <!-- Submit Button -->
+        <button type="submit">Send Message</button>
+    </form>
+
+    <script>
+        async function fetchAverageSugarLevel(userId) {
+            if (!userId) return;
+
+            const response = await fetch(`/average-sugar-level/${userId}`);
+            const data = await response.json();
+            document.getElementById('averageSugarLevel').innerText = 
+                data.average ? `Average Sugar Level: ${data.average}` : 'User not found';
+        }
+    </script>
+</body>
+</html>
