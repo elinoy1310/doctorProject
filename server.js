@@ -22,13 +22,3 @@ app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
 
-
-
-// ///
-
-// const { fetchMealDataById } = require('cloudcomputing');
-// ; // קריאה לדוגמה
-// ///
-
-// const { fetchMealDataById } = require('C:/cloudComputingProject/cloudComputing/models/mealsModel.js');
-// console.log(fetchMealDataById("123456789"))

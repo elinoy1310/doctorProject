@@ -1,18 +1,6 @@
 const userModel = require('../models/userModel');
 const produceMessage=require('../producer.js')
 
-// // Render the sendMessages.ejs page
-// exports.getSendMessagesPage = async (req, res) => {
-//     try {
-//         // Fetch users from the model
-//         const users = await userModel.getAllUsers();
-//         res.render('sendMessages', { users });
-//     } catch (error) {
-//         res.status(500).send('Error loading sendMessages page');
-//     }
-// };
-
-
 exports.getSendMessagesPage = async (req, res) => {
     try {
         // שליפת כל המשתמשים שבהם isRegistered הוא true

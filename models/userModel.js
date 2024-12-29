@@ -1,19 +1,3 @@
-// Simulating a database
-// const users = [
-//     { id: 1, name: 'User One', sugarLevels: [100, 105, 110, 95, 90, 115, 102] },
-//     { id: 2, name: 'User Two', sugarLevels: [130, 125, 140, 120, 110, 135, 128] },
-// ];
-
-// // Fetch all users
-// exports.getAllUsers = async () => {
-//     return users;
-// };
-
-
-
-
-
-
 
 const sql = require('mssql');
 const { fetchMealDataById } = require('C:/cloudComputingProject/cloudComputing/models/mealsModel.js');
